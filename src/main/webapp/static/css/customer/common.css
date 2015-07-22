@@ -1,0 +1,52 @@
+@charset "utf-8";
+/*常用css*/
+body{
+	font-family: "微软雅黑";
+	margin:0px;
+}
+a{
+	text-decoration: none !important;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clear_float{
+	clear: both;
+}
+.text_center{
+	text-align: center;
+}
+.prompt_span{
+	line-height: 34px;
+	color:red;
+}
+::-webkit-scrollbar-track-piece {
+	background-color:#425066;
+	/* border-left:1px solid #000000;
+	border-right:1px solid #000000; */
+}
+::-webkit-scrollbar {
+	width:10px;
+	height:6px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: #eaeaea;
+	background-clip: padding-box;
+	border-left:1px solid #D2D2D2;
+	border-right:1px solid #D2D2D2;
+	min-height: 35px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color: #ffffff;
+	background-clip: padding-box;
+	/* border-left:1px solid #000000;
+	border-right:1px solid #000000; */
+	min-height: 35px;
+}
+.btn_group{
+	margin-top:50px;
+	text-align: center;
+}
