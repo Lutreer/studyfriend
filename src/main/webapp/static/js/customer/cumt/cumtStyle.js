@@ -2,7 +2,7 @@
  * Created by lxuidesigner@gmail.com 2015-07-15.
  */
 $('#form_date').datetimepicker({
-        language:  'zh-CN',
+        //language:  'zh-CN',
         weekStart: 0,
         todayBtn:  1,
 		autoclose: 1,

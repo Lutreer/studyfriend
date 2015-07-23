@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html ng-app="xueyouApp" id="html">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>学友</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>STUDY friend</title>
+    <link rel="shortcut icon" href="" />
     <!-- Load CSS files-->
     <link href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="static/css/plugin/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet"/>   
@@ -16,7 +17,7 @@
 		<nav class="navbar navbar-inverse nav_top navbar-fixed-top top_nav">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">学友</a>
+					<a class="navbar-brand" href="#">STUDY friend</a>
 				</div>
 			</div>
 		</nav>
@@ -38,6 +39,9 @@
 				</div>
 				<div class="col-sm-12 git_email_detail">
 					<i class="fa fa-envelope-o"></i>lxuidesigner@gmail.com
+				</div>
+				<div class="col-sm-12 git_email_detail">
+					<i class="fa fa-info-circle"></i>Version:1.0.0.20150724_alpha 
 				</div>
 			</div>
 		</div>
@@ -72,7 +76,7 @@
 	<script src="http://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script src="static/js/plugin/bootstrap/bootstrap-datetimepicker.min.js"></script>
-	<script src="static/js/plugin/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+	<!-- <script src="static/js/plugin/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script> -->
 	<script src="static/js/plugin/angular/angular.js"></script>
 	<!-- <script src="/static/js/plugin/flatui/flat-ui.min.js" th:src="@{/js/plugin/flatui/flat-ui.min.js}"></script> -->
 	<script src="static/js/plugin/angular/angular-route.min.js"></script>

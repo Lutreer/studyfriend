@@ -1,37 +1,37 @@
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="static/css/customer/cumt.css" rel="stylesheet"/>   
 </head>
 <body>
 	<div class="col-sm-8">
-		<form action="" method="POST" name="uploadExcelForm" class="form-horizontal" ng-submit="uploadExcel(myFile)" novalidate>
+		<form action="/cumt" Enctype="multipart/form-data" method="POST" id="uploadExcelForm" name="uploadExcelForm" class="form-horizontal" novalidate>
 			<fieldset>
 				<div class="alert alert-danger alert-dismissible" role="alert" ng-show="noFileError">
 					<button type="button" class="close" ng-click="noFileErrorClose()"><span>&times;</span></button>
-					<strong>Warning!</strong> 请选择文件！
+					<strong>Warning!</strong> Please select a file!
 				</div>
 	            <div class="alert alert-success alert-dismissible" role="alert" ng-show="ExpError">
 	            	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span>&times;</span></button>  
 					<strong>Failed!</strong>{{ExpError}} 
 				</div> 
 				<div class="form-group form-group_date">
-	                <label for="dtp_input" class="col-sm-3">修改日期:</label>
+	                <label for="dtp_input" class="col-sm-3">Modify Date:</label>
 	                <div class="input-group date_div date form_date col-sm-7" id="form_date" data-date="" data-date-format="yyyy-MM-dd" data-link-field="dtp_input" data-link-format="yyyy-mm-dd">
 	                    <input required name="modifyDate" class="form-control" size="16" type="text" ng-model="modifyDate" value="" readonly id="dtp_input" ng-blur="datetimeModel()">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 	                </div>
 	            </div>
 	            <div class="form-group">
-	                <label class="col-sm-3">选择文件(Multi):</label>
+	                <label class="col-sm-3">File(Single):</label>
 	                <div class="col-sm-7">
-	                    <input name="myFile" ng-file-select ng-model="myFile" class="form-control" type="file" value="" accept=".xls,.xlsx">
+	                    <input id="myFile" name="file" ng-model="myFile" class="form-control" type="file" value="" accept=".xls,.xlsx">
 	                </div>
 	                <div class="clear_float"></div>
 	            </div>
 	            
 	            <div class="form-group">
-	                <label class="col-sm-3">随机数区间:</label>
+	                <label class="col-sm-3">Random Number:</label>
 	                <div class="col-sm-7 random_div">
 		                <div class="col-sm-5">
 		                    <input required name="randomMin" placeholder="Min" class="form-control" type="number" value="" accept="" ng-model="randomMin" ng-blur="randomValid()">
@@ -44,18 +44,14 @@
 	                <div class="clear_float"></div>
 	            </div>
 	            
-	            <div class="form-group btn_group">
-	            	<div class="col-sm-offset-3 col-sm-7">
-	            		<button type="submit" ng-disabled="uploadExcelForm.$invalid || randomError" class="btn btn-success col-sm-12"> 开始 </button>
-	            	</div>
-	            </div>
-	            <div class="alert alert-success alert-dismissible" role="alert">
-	            	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span>&times;</span></button>  
-					<strong>Success!</strong><a target="_blank" href="file:\\{{filePath}}">file://{{filePath}}下载</a> 
-				</div>
 	        </fieldset>
         </form>
+        <div class="form-group btn_group">
+        	<div class="col-sm-offset-3 col-sm-7">
+        		<button type="submit" ng-disabled="uploadExcelForm.$invalid || randomError" class="btn btn-success col-sm-12" ng-click="submicUploadExcelForm()"> START </button>
+        	</div>
+        </div>
 	</div>
-	<script src="static//js/customer/cumt/cumtStyle.js"></script>
+	<script src="static/js/customer/cumt/cumtStyle.js"></script>
 </body>
 </html>

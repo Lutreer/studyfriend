@@ -1,47 +1,35 @@
-package com.kaishengit.controller;
+package com.kaishengit.cumt;
 
-import java.io.IOException;
-import java.io.OutputStream;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.kaishengit.cumt.pojo.ErrorPojo;
+
 
 
 @Controller
-public class HelloController {
-
-	@RequestMapping("/index")
-	public String index() {
-		return "index";
-	}
+@RequestMapping(value="/cumt")
+public class CumtController {
 	
-	
-	@RequestMapping(value="/cumt", method = { RequestMethod.POST })
+	/*@RequestMapping(value="/lrjexceldata", method = { RequestMethod.POST })
 	public void index(@RequestParam String modifyDate,@RequestParam String randomMin,@RequestParam String randomMax,
 			@RequestParam("file") MultipartFile file,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
 	
+		String params = "{'modifyDate:''"+modifyDate+"','randomMin:''"+randomMin+"','randomMax':'"+randomMax+"'}";
+		
 		ErrorPojo error = null;
 		boolean isError = false;
 		try {
-			String[] date = modifyDate.split("-");
-			String oldFileName = new String(file.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8");  
-			oldFileName = new String(oldFileName.getBytes(),"UTF-8");
+			ObjectMapper mapper = new ObjectMapper();  
+			LrjExcelDataPojo param = mapper.readValue(params.toString(), LrjExcelDataPojo.class);  
+			String[] date = param.getModifyDate().split("-");
+			String oldFileName = file.getOriginalFilename();
+			oldFileName = new String(oldFileName.getBytes(), "UTF-8");
 			String[] oldFileNameArr = oldFileName.split("\\.");
 			String oldDate = oldFileNameArr[0].substring(oldFileNameArr[0].length()-10, oldFileNameArr[0].length());
 			
-			String newFileName = oldFileNameArr[0].replaceAll(oldDate, modifyDate) + "." +oldFileNameArr[1];
-			newFileName = new String(newFileName.getBytes(),"UTF-8");
+			String newFileName = oldFileNameArr[0].replaceAll(oldDate, param.getModifyDate()) + "." +oldFileNameArr[1];
+			newFileName = new String(newFileName.getBytes(), "UTF-8");
 			error = new ErrorPojo(); 
 			
 			HSSFWorkbook wb = new HSSFWorkbook(file.getInputStream());
@@ -70,10 +58,8 @@ public class HelloController {
 					sheet.getRow(1).getCell(0).setCellValue(newDateStr);
 					
 					//变形速率(mm/天)
-					Float max = Float.parseFloat(randomMax);
-					Float min = Float.parseFloat(randomMin);
-					Float random = max-min;
-					String BXSLFormula = randomMin+"+RAND()*("+random.toString()+")";
+					Float random = param.getRandomMax()-param.getRandomMin();
+					String BXSLFormula = param.getRandomMin().toString()+"+RAND()*("+random.toString()+")";
 					for(int j = 3; j < rowNum-1; j++){
 						sheet.getRow(j).getCell(5).setCellFormula(BXSLFormula);
 					}
@@ -98,11 +84,28 @@ public class HelloController {
 					response.setContentType("application/vnd.ms-excel");     
 					response.setHeader("Content-disposition", "attachment;filename=" + newFileName);
 					
-					OutputStream out = response.getOutputStream();
+					//
+					//String serverPath = System.getProperty("user.dir");
+					String serverPath = request.getSession().getServletContext().getRealPath("");
+					if (!serverPath.endsWith(File.separator)) {
+						serverPath = serverPath + File.separator;
+				    }
+					SimpleDateFormat df = new SimpleDateFormat("yyyyMMddmmss");//设置日期格式
+					String dateUuid = df.format(new Date());
+					File newFile = new File(serverPath+"\\"+dateUuid);  
+					if(!newFile.exists()){  
+						newFile.mkdir();  
+					}
+					FileOutputStream out = new FileOutputStream(serverPath+"\\"+dateUuid+"\\"+newFileName);  
+					
 					
 					wb.write(out);  
 					out.flush();          
 					out.close();
+					
+					String newFilePath = serverPath+"\\"+dateUuid+"\\"+newFileName;
+					error.setCode(0);
+					error.setErrorMessage(newFilePath);
 				}
 			}
 		} catch (Exception e) {
@@ -112,13 +115,14 @@ public class HelloController {
 			e.printStackTrace();
 		}
 		
-       /* if(isError){
+        if(isError){
         	return  new ResponseEntity<Object>(new Resource<ErrorPojo>(error), HttpStatus.BAD_REQUEST);
         }else{
         	return  new ResponseEntity<Object>(new Resource<ErrorPojo>(error), HttpStatus.OK);
-        }*/
+        }
 		
 		
-	}
+	}*/
+	
 	
 }

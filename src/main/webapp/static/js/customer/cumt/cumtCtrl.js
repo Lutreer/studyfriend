@@ -38,6 +38,17 @@ cumtControllers.controller('cumtExcelDataCtrl',['$scope','$upload','cumtExcelDat
 		$scope.noFileError=false;
 	}
 	
+	
+	$scope.submicUploadExcelForm = function() {
+		$scope.noFileError=false;
+		var myFile = $("#myFile").val();
+		if(myFile!=""){
+			$("#uploadExcelForm").submit();
+        }else{
+	       	 $scope.noFileError=true;
+	       	 return;
+        }
+	}
 	/**
 	 * 上传文件
 	 */
