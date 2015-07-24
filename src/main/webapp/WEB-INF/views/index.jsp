@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %> 
 <!DOCTYPE html>
 <html ng-app="xueyouApp" id="html">
 <head>
@@ -17,7 +18,7 @@
 		<nav class="navbar navbar-inverse nav_top navbar-fixed-top top_nav">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">STUDY friend</a>
+					<a class="navbar-brand" href="#">STUDY friend 撒旦法萨芬</a>
 				</div>
 			</div>
 		</nav>
@@ -46,8 +47,8 @@
 			</div>
 		</div>
 	</footer>
-	<!-- 公共提示框 -->
-	<!-- 此处bs-example-modal-lg modal-lg 样式将模态框设置为大框 ，如果为bs-example-modal-sm modal-sm即为小框-->
+	<!-- å¬å±æç¤ºæ¡ -->
+	<!-- æ­¤å¤bs-example-modal-lg modal-lg æ ·å¼å°æ¨¡ææ¡è®¾ç½®ä¸ºå¤§æ¡ ï¼å¦æä¸ºbs-example-modal-sm modal-små³ä¸ºå°æ¡-->
 	<div class="modal fade bs-example-modal-sm" id="alert_dialog" role="dialog" aria-label="myModalLabel" aria-hidden="true">
 		<div id="modal_dialog" class="modal-dialog modal-sm">
 			<div class="modal-content">

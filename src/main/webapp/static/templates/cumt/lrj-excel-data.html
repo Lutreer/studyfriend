@@ -5,8 +5,9 @@
 </head>
 <body>
 	<div class="col-sm-8">
-		<form action="/cumt" Enctype="multipart/form-data" method="POST" id="uploadExcelForm" name="uploadExcelForm" class="form-horizontal" novalidate>
+		<form action="/studyfriend/cumt" Enctype="multipart/form-data" method="POST" id="uploadExcelForm" name="uploadExcelForm" class="form-horizontal" novalidate>
 			<fieldset>
+			<input type="text" id="fileName" name="fileName">
 				<div class="alert alert-danger alert-dismissible" role="alert" ng-show="noFileError">
 					<button type="button" class="close" ng-click="noFileErrorClose()"><span>&times;</span></button>
 					<strong>Warning!</strong> Please select a file!
@@ -16,7 +17,7 @@
 					<strong>Failed!</strong>{{ExpError}} 
 				</div> 
 				<div class="form-group form-group_date">
-	                <label for="dtp_input" class="col-sm-3">Modify Date:</label>
+	                <label for="dtp_input" class="col-sm-3">Modify Date撒旦法:</label>
 	                <div class="input-group date_div date form_date col-sm-7" id="form_date" data-date="" data-date-format="yyyy-MM-dd" data-link-field="dtp_input" data-link-format="yyyy-mm-dd">
 	                    <input required name="modifyDate" class="form-control" size="16" type="text" ng-model="modifyDate" value="" readonly id="dtp_input" ng-blur="datetimeModel()">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>

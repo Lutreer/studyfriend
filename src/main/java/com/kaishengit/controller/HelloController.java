@@ -28,14 +28,18 @@ public class HelloController {
 	
 	@RequestMapping(value="/cumt", method = { RequestMethod.POST })
 	public void index(@RequestParam String modifyDate,@RequestParam String randomMin,@RequestParam String randomMax,
-			@RequestParam("file") MultipartFile file,
+			@RequestParam("file") MultipartFile file,@RequestParam String fileName,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
-	
+		if (request.getCharacterEncoding() == null) {  
+            request.setCharacterEncoding("UTF-8");  
+        }
 		ErrorPojo error = null;
+		@SuppressWarnings("unused")
 		boolean isError = false;
 		try {
+			System.out.println("dfsgsdfg水电费水电费水电费水电费"+fileName);
 			String[] date = modifyDate.split("-");
-			String oldFileName = new String(file.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8");  
+			String oldFileName = fileName;
 			oldFileName = new String(oldFileName.getBytes(),"UTF-8");
 			String[] oldFileNameArr = oldFileName.split("\\.");
 			String oldDate = oldFileNameArr[0].substring(oldFileNameArr[0].length()-10, oldFileNameArr[0].length());
