@@ -27,15 +27,14 @@ public class HelloController {
 	
 	
 	@RequestMapping(value="/cumt", method = { RequestMethod.POST })
-	public void index(@RequestParam String modifyDate,@RequestParam String randomMin,@RequestParam String randomMax,
+	public void index(@RequestParam String modifyDate,@RequestParam String randomMin,@RequestParam String randomMax,@RequestParam String fileName,
 			@RequestParam("file") MultipartFile file,
 			HttpServletRequest request, HttpServletResponse response) throws IOException{
-	
 		ErrorPojo error = null;
 		boolean isError = false;
 		try {
 			String[] date = modifyDate.split("-");
-			String oldFileName = new String(file.getOriginalFilename().getBytes("ISO-8859-1"), "UTF-8");  
+			String oldFileName = fileName;
 			oldFileName = new String(oldFileName.getBytes(),"UTF-8");
 			String[] oldFileNameArr = oldFileName.split("\\.");
 			String oldDate = oldFileNameArr[0].substring(oldFileNameArr[0].length()-10, oldFileNameArr[0].length());
@@ -70,14 +69,13 @@ public class HelloController {
 					sheet.getRow(1).getCell(0).setCellValue(newDateStr);
 					
 					//变形速率(mm/天)
-					Float max = Float.parseFloat(randomMax);
+					/*Float max = Float.parseFloat(randomMax);
 					Float min = Float.parseFloat(randomMin);
 					Float random = max-min;
 					String BXSLFormula = randomMin+"+RAND()*("+random.toString()+")";
 					for(int j = 3; j < rowNum-1; j++){
 						sheet.getRow(j).getCell(5).setCellFormula(BXSLFormula);
 					}
-					
 					//本次沉降量(mm)
 					for(int j = 3; j < rowNum-1; j++){
 						String BCCDLtTargetColumn = "F";
@@ -93,8 +91,20 @@ public class HelloController {
 						QCLJCDLTargetColumnE = QCLJCDLTargetColumnE + targetRow;
 						QCLJCDLTargetColumnC = QCLJCDLTargetColumnC + targetRow;
 						sheet.getRow(j).getCell(3).setCellFormula(QCLJCDLTargetColumnE+"-"+QCLJCDLTargetColumnC);
+					}*/
+					//本次累计  沉降量(mm)
+					Float max = Float.parseFloat(randomMax);
+					Float min = Float.parseFloat(randomMin);
+					Float random0 = max - min + 1;
+					for(int j = 3; j < rowNum-1; j++){
+						double random = (double) (Math.random() * random0)+min;
+						//变形速率(mm/天)
+						sheet.getRow(j).getCell(5).setCellValue(random);
+						//本次沉降量(mm)
+						sheet.getRow(j).getCell(2).setCellValue(random);
+						
+						sheet.getRow(j).getCell(4).setCellValue(sheet.getRow(j).getCell(3).getNumericCellValue()+random);
 					}
-					
 					response.setContentType("application/vnd.ms-excel");     
 					response.setHeader("Content-disposition", "attachment;filename=" + newFileName);
 					

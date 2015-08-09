@@ -102,6 +102,6 @@
 	
   </dependencies>
   <build>
-    <finalName>springmvc</finalName>
+    <finalName>studyfriend</finalName>
   </build>
 </project>

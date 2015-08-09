@@ -43,6 +43,18 @@ cumtControllers.controller('cumtExcelDataCtrl',['$scope','$upload','cumtExcelDat
 		$scope.noFileError=false;
 		var myFile = $("#myFile").val();
 		if(myFile!=""){
+			var filenameArry = [];
+			var realName="";
+			if(myFile.indexOf("\\") > 0){
+				filenameArry = myFile.split("\\");
+				realName = filenameArry[filenameArry.length-1]
+			}
+			if(myFile.indexOf("/") > 0){
+				filenameArry = myFile.split("/");
+				realName = filenameArry[filenameArry.length-1]
+			}
+			
+			$("#filename").val(realName);
 			$("#uploadExcelForm").submit();
         }else{
 	       	 $scope.noFileError=true;
